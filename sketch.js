@@ -7,6 +7,7 @@ var botao1, botao2
 //Estados do Jogo
 var PLAY=1;
 var END=0;
+var WIN = 2
 var gameState=1;
 
 function preload(){
@@ -23,17 +24,27 @@ function preload(){
 
 function setup(){
   
-  createCanvas(windowWidth,windowHeight);
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if(isMobile){
+    canW = displayWidth; 
+    canW = displayHeight; 
+    createCanvas(displayWidth, displayHeight);
+  } 
+  else {
+    canW = windowWidth; 
+    canH = windowHeight; 
+    createCanvas(windowWidth, windowHeight);
+  }
   frameRate(80);
 // Fundo se movendo
-path=createSprite(width/2,200);
+path=createSprite(canW/2,200);
 path.addImage(pathImg);
 path.velocityY = 4;
 
 boyImg.frameDelay = 20
 
 //criando menino correndo
-boy = createSprite(width/2,height-20,20,20);
+boy = createSprite(canW/2,canW-80,20,20);
 boy.addAnimation("SahilRunning",boyImg);
 boy.scale=1;
 
@@ -58,8 +69,8 @@ function draw() {
   boy.collide(edges);
   
   //código para redefinir o fundo
-  if(path.y > height ){
-    path.y = height/2;
+  if(path.y > canH ){
+    path.y = canH/2;
   }
   
     createCash();
@@ -84,8 +95,8 @@ function draw() {
         gameState=END;
         
         boy.addAnimation("SahilRunning",endImg);
-        boy.x=width/2;
-        boy.y=height/2;
+        boy.x=canW/2;
+        boy.y=canH/2;
         boy.scale=0.6;
         
         cashG.destroyEach();
@@ -105,51 +116,58 @@ function draw() {
   drawSprites();
   textSize(20);
   fill(255);
-  text("Pontos: "+ treasureCollection,width-150,30);
+  text("Pontos: "+ treasureCollection,canW-150,30);
+  }else if(gameState === WIN){
+    textSize(30);
+    text("Voce coletou muitos cachorros... Pode ir pioneirar agora! =D: ",canW/2 - 400,canH/2);
   }
-
+  if(treasureCollection >= 1000){
+    gameState=WIN
+  
+  }
 }
 
 function createCash() {
   if (World.frameCount % 200 == 0) {
-  var cash = createSprite(Math.round(random(70, width-70),40, 10, 10));
+  var cash = createSprite(Math.round(random(70, canW-70),40, 10, 10));
   cash.addImage(cashImg);
   cash.scale=0.03;
   cash.velocityY = 5;
-  cash.lifetime = 200;
+  cash.lifetime = canH/5;
   cashG.add(cash);
   }
 }
 
 function createDiamonds() {
   if (World.frameCount % 320 == 0) {
-  var diamonds = createSprite(Math.round(random(70, width-70),40, 10, 10));
+  var diamonds = createSprite(Math.round(random(70, canW-70),40, 10, 10));
   diamonds.addImage(diamondsImg);
   diamonds.scale=0.03;
   diamonds.velocityY = 5;
-  diamonds.lifetime = 200;
+  diamonds.lifetime = canH/5;
   diamondsG.add(diamonds);
 }
 }
 
 function createJwellery() {
   if (World.frameCount % 410 == 0) {
-  var jwellery = createSprite(Math.round(random(70, width-70),40, 10, 10));
+  var jwellery = createSprite(Math.round(random(70, canW-70),40, 10, 10));
   jwellery.addImage(jwelleryImg);
   jwellery.scale=0.03;
   jwellery.velocityY = 5;
-  jwellery.lifetime = 200;
+  jwellery.lifetime = canH/5;
   jwelleryG.add(jwellery);
   }
 }
 
 function createSword(){
   if (World.frameCount % 530 == 0) {
-  var sword = createSprite(Math.round(random(70, width-70),40, 10, 10));
+  var sword = createSprite(Math.round(random(70, canW-70),40, 10, 10));
   sword.addImage(swordImg);
   sword.scale=0.2;
   sword.velocityY = 4;
-  sword.lifetime = 200;
+  sword.lifetime =canH/5;
   swordGroup.add(sword);
   }
 }
+
