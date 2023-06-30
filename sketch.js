@@ -24,6 +24,7 @@ function preload(){
 function setup(){
   
   createCanvas(windowWidth,windowHeight);
+  frameRate(80);
 // Fundo se movendo
 path=createSprite(width/2,200);
 path.addImage(pathImg);
