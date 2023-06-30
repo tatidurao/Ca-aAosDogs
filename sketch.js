@@ -1,4 +1,3 @@
-
 var path,boy,cash,diamonds,jwellery,sword;
 var pathImg,boyImg,cashImg,diamondsImg,jwelleryImg,swordImg;
 var treasureCollection = 0;
@@ -58,6 +57,10 @@ function draw() {
   
   edges= createEdgeSprites();
   boy.collide(edges);
+  if(treasureCollection >= 100){
+    gameState=WIN
+  
+  }
   
   //código para redefinir o fundo
   if(path.y > height ){
@@ -111,12 +114,9 @@ function draw() {
   }
   else if(gameState === WIN){
     textSize(30);
-    text("Voce coletou muitos cachorros... Pode ir pioneirar agora! =D: ",canW/2 - 400,canH/2);
+    text("Voce coletou muitos cachorros... Pode ir pioneirar agora! =D",width/2 - 400,height/2);
   }
-  if(treasureCollection >= 1000){
-    gameState=WIN
   
-  }
 
 }
 
