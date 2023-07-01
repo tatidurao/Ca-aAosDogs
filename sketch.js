@@ -57,7 +57,7 @@ function draw() {
   
   edges= createEdgeSprites();
   boy.collide(edges);
-  if(treasureCollection >= 100){
+  if(treasureCollection >= 1000){
     gameState=WIN
   
   }
