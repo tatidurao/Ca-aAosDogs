@@ -114,7 +114,7 @@ function draw() {
   }
   else if(gameState === WIN){
     textSize(30);
-    text("Voce coletou muitos cachorros... Pode ir pioneirar agora! =D",width/2 - 400,height/2);
+    text("Voce coletou muitos cachorros... =D",width/2 - 400,height/2);
   }
   
 
