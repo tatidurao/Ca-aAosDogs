@@ -13,9 +13,9 @@ var gameState=1;
 function preload(){
   pathImg = loadImage("Road.png");
   boyImg = loadAnimation("animation1.png","animation2.png");
-  cashImg = loadImage("dog1.png");
-  diamondsImg = loadImage("dog2.png");
-  jwelleryImg = loadImage("dog3.png");
+  cashImg = loadImage("dog1_2.png");
+  diamondsImg = loadImage("dog2_2.png");
+  jwelleryImg = loadImage("dog3_2.png");
   swordImg = loadImage("gato1.png");
   endImg =loadAnimation("fimdeJogo.png");
   boyImg.playing = true
@@ -57,7 +57,7 @@ function draw() {
   
   edges= createEdgeSprites();
   boy.collide(edges);
-  if(treasureCollection >= 1000){
+  if(treasureCollection >= 2000){
     gameState=WIN
   
   }
@@ -124,7 +124,7 @@ function createCash() {
   if (World.frameCount % 200 == 0) {
   var cash = createSprite(Math.round(random(70, width-70),40, 10, 10));
   cash.addImage(cashImg);
-  cash.scale=0.03;
+  cash.scale=0.5;
   cash.velocityY = 5;
   cash.lifetime = 200;
   cashG.add(cash);
@@ -135,7 +135,7 @@ function createDiamonds() {
   if (World.frameCount % 320 == 0) {
   var diamonds = createSprite(Math.round(random(70, width-70),40, 10, 10));
   diamonds.addImage(diamondsImg);
-  diamonds.scale=0.03;
+  diamonds.scale=0.5;
   diamonds.velocityY = 5;
   diamonds.lifetime = 200;
   diamondsG.add(diamonds);
@@ -146,7 +146,7 @@ function createJwellery() {
   if (World.frameCount % 410 == 0) {
   var jwellery = createSprite(Math.round(random(70, width-70),40, 10, 10));
   jwellery.addImage(jwelleryImg);
-  jwellery.scale=0.03;
+  jwellery.scale=0.5;
   jwellery.velocityY = 5;
   jwellery.lifetime = 200;
   jwelleryG.add(jwellery);
